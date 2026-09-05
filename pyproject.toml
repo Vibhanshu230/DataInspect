@@ -1,0 +1,39 @@
+[project]
+name = "data-inspect"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Vibhanshu230", email = "vibha23703@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.141.1",
+    "pydantic>=2.13.5",
+    "pyspark>=4.2.0",
+    "python-multipart>=0.0.32",
+    "uvicorn>=0.52.4",
+]
+
+[project.optional-dependencies]
+databricks = [
+    "databricks-sdk>=0.135.0",
+]
+
+agents = [
+    "langchain-core>=1.6.2",
+    "langchain-openai>=1.6.0",
+    "langgraph>=1.2.11",
+]
+
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

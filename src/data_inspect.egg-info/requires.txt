@@ -1,0 +1,17 @@
+fastapi>=0.141.1
+pydantic>=2.13.5
+pyspark>=4.2.0
+python-multipart>=0.0.32
+uvicorn>=0.52.4
+
+[agents]
+langchain-core>=1.6.2
+langchain-openai>=1.6.0
+langgraph>=1.2.11
+
+[databricks]
+databricks-sdk>=0.135.0
+
+[dev]
+httpx>=0.28.1
+pytest>=9.1.1
