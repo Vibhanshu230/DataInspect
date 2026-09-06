@@ -3,7 +3,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 from data_inspect.source_specifications import sourceSpecs
 
-class NumericState(BaseModel):
+class NumericStats(BaseModel):
     min_value: float | None = None
     max_value: float | None = None
     mean: float | None = None
