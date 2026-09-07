@@ -42,14 +42,14 @@ It does not clean or rewrite rows. If a date is `not-a-date`, you get a failure 
 
 ```mermaid
 flowchart LR
-  Client["HTTP client / Postman"] --> API["FastAPI\n`api.py`"]
-  API --> Jobs["JobStore\n`jobs.py`"]
-  Jobs --> Spark["Spark session\n`spark.py`"]
-  Jobs --> Profile["`run_profile()`\n`profile.py`"]
-  Profile --> Ingest["`load_source()`\n`source_specifications.py`"]
-  Profile --> Checks["metrics + flags\n`checks.py`"]
-  Jobs --> Agent["MockAgent\n`agents.py`"]
-  Checks --> Models["Pydantic models\n`models.py`"]
+  Client["HTTP client / Postman"] --> API["FastAPI - api.py"]
+  API --> Jobs["JobStore - jobs.py"]
+  Jobs --> Spark["Spark session - spark.py"]
+  Jobs --> Profile["run_profile - profile.py"]
+  Profile --> Ingest["load_source - source_specifications.py"]
+  Profile --> Checks["metrics and flags - checks.py"]
+  Jobs --> Agent["MockAgent - agents.py"]
+  Checks --> Models["Pydantic models - models.py"]
   Agent --> Models
 ```
 
