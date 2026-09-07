@@ -6,16 +6,16 @@ from data_inspect.config import Settings, get_settings
 from data_inspect.source_specifications import sourceSpecs, infer_spec, load_source
 from data_inspect.models import ColumnProfile, DatasetProfile
 
-def _spec(source : sourceSpecs | dict | str) -> sourceSpecs:
+def _as_spec(source: sourceSpecs | dict | str) -> sourceSpecs:
     if isinstance(source, sourceSpecs):
         return source
     if isinstance(source, str):
-        return infer_spec
+        return infer_spec(source)
     return sourceSpecs.model_validate(source)
 
 def run_profile(spark: SparkSession, source: sourceSpecs | dict | str, backend: str = "local", settings: Settings | None = None, key:str | list[str] | None = None) -> DatasetProfile:
     settings = settings or get_settings()
-    spec = _spec(source)
+    spec = _as_spec(source)
     df = load_source(spark, spec)
 
     row_count = df.count()
@@ -56,10 +56,11 @@ def run_profile(spark: SparkSession, source: sourceSpecs | dict | str, backend: 
                 null_rate = round(null_rate, 6),
                 fill_rate = round(1.0 - null_rate, 6),
                 distinct_count = distinct_count,
-                uniqueness = None if uniq is None else orund(uniq, 6),
+                uniqueness = None if uniq is None else round(uniq, 6),
                 is_constant = distinct_count <= 1,
                 true_rate = None if true is None else round(true, 6),
-                numeric = checks.string_stats(df, name, row_count) if checks.is_string(dtype) else None,
+                numeric=checks.numeric_stats(df, name) if checks.is_numeric(dtype) else None,
+                string=checks.string_stats(df, name, row_count) if checks.is_string(dtype) else None,
                 date_parse_failure_rate = None if date_fail is None else round(date_fail, 6),
             )
         )

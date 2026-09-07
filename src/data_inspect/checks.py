@@ -7,8 +7,8 @@ from data_inspect.models import ColumnProfile, NumericStats, StringStats
 
 
 
-TRUE_TOKEN_TYPES = ("true", "1", "yes")
-FALSE_TOKEN_TYPES = ("false", "0", "no")
+TRUE_TOKEN_TYPES = ("true", "1", "yes", "t", "y")
+FALSE_TOKEN_TYPES = ("false", "0", "no", "n", "f")
 BOOL_TOKENS = set(TRUE_TOKEN_TYPES + FALSE_TOKEN_TYPES)
 DATE_HINTS = ("date", "_dt", "dt_", "time", "ts", "datetime")
 
@@ -92,7 +92,7 @@ def numeric_stats(df: DataFrame, col : str) -> NumericStats:
         stddev=_f(agg["stddev"]),
         q1=_f(q1),
         q3=_f(q3),
-        inter_quartile_outlier_rate=_f(outlier_rate),
+        iqr_outlier_rate=_f(outlier_rate),
     )
 
 def string_stats(df: DataFrame, col: str, row_count: int) -> StringStats:
@@ -122,7 +122,8 @@ def looks_date(name: str, dtype) -> bool:
 def date_fail_rate(df: DataFrame, col: str, original_nulls: int, row_count: int) -> float | None:
     if row_count == 0:
         return None
-    parsed_nulls = df.select(F.sum(F.to_timestamp(F.col(col)).isNull().cast("long"))).first()[0] or 0
+    # Spark 4 ANSI mode raises on malformed values; try_to_timestamp returns NULL instead.
+    parsed_nulls = df.select(F.sum(F.try_to_timestamp(F.col(col)).isNull().cast("long"))).first()[0] or 0
     return max(int(parsed_nulls) - original_nulls, 0) / row_count
 
 def build_flags(columns: list[ColumnProfile], settings: Settings) -> list[str]:
@@ -132,7 +133,7 @@ def build_flags(columns: list[ColumnProfile], settings: Settings) -> list[str]:
             flags.append(f"low_fill:{col.name}")
         if col.is_constant:
             flags.append(f"constant:{col.name}")
-        if col.numeric and (col.numeric.inter_quartile_outlier_rate or 0) > settings.outlier_rate_threshold:
+        if col.numeric and (col.numeric.iqr_outlier_rate or 0) > settings.outlier_rate_threshold:
             flags.append(f"outliers:{col.name}")
         if col.true_rate is not None and col.true_rate in {0.0, 1.0}:
             flags.append(f"degenerate_boolean:{col.name}")

@@ -1,0 +1,16 @@
+application_id,ssn,customer_name,loan_amount,default_flag,country,application_date,email,is_existing_customer
+1001,123-45-6789,Ada Lovelace,12000,Y,US,2024-01-15,ada@example.com,true
+1002,234-56-7890,Alan Turing,8500,N,US,2024-01-16,alan@example.com,false
+1003,,Grace Hopper,15000,true,US,2024-01-17,grace@example.com,1
+1004,345-67-8901,Katherine Johnson,9000,N,US,2024-01-18,,0
+1005,456-78-9012,Dorothy Vaughan,11000,1,US,2024-01-19,dorothy@example.com,Y
+1001,123-45-6789,Ada Lovelace,12000,Y,US,2024-01-15,ada@example.com,true
+1006,,Margaret Hamilton,14000,yes,US,2024-02-01,margaret@example.com,true
+1007,567-89-0123,Annie Easley,7000,N,US,not-a-date,annie@example.com,false
+1008,678-90-1234,Mary Jackson,999999,N,US,2024-02-03,mary@example.com,false
+1009,789-01-2345,Hedy Lamarr,9500,,US,2024-02-04,hedy@example.com,true
+1010,,Radia Perlman,13000,false,US,2024-02-05,radia@example.com,true
+1011,890-12-3456,Barbara Liskov,16000,N,US,2024-02-06,barbara@example.com,false
+1012,901-23-4567,Frances Allen,8000,Y,US,2024-02-07,,true
+1013,012-34-5678,Jean Bartik,10500,no,US,2024-02-08,jean@example.com,0
+1014,,Adele Goldberg,17500,N,US,2024-02-09,adele@example.com,true

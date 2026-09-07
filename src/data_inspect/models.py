@@ -38,6 +38,9 @@ class DatasetProfile(BaseModel):
     column_count: int
     duplicate_row_count: int
     duplicate_row_rate: float
+    identifier: str | list[str] | None = None
+    duplicate_key_count: int | None = None
+    duplicate_key_rate: float | None = None
     columns: list[ColumnProfile]
     flags: list[str] = Field(default_factory=list)
     sample_rows: list[dict[str, Any]] = Field(default_factory=list)

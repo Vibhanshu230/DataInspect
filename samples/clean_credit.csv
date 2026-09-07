@@ -1,0 +1,11 @@
+application_id,ssn,customer_name,loan_amount,default_flag,country,application_date,email,is_existing_customer
+2001,111-11-1111,Ada Lovelace,12000,N,US,2024-01-15,ada@example.com,true
+2002,222-22-2222,Alan Turing,8500,N,UK,2024-01-16,alan@example.com,false
+2003,333-33-3333,Grace Hopper,15000,Y,US,2024-01-17,grace@example.com,true
+2004,444-44-4444,Katherine Johnson,9000,N,UK,2024-01-18,kat@example.com,false
+2005,555-55-5555,Dorothy Vaughan,11000,N,US,2024-01-19,dorothy@example.com,true
+2006,666-66-6666,Margaret Hamilton,14000,N,US,2024-02-01,margaret@example.com,true
+2007,777-77-7777,Annie Easley,7000,Y,UK,2024-02-02,annie@example.com,false
+2008,888-88-8888,Mary Jackson,16000,N,US,2024-02-03,mary@example.com,false
+2009,999-99-9999,Hedy Lamarr,9500,N,US,2024-02-04,hedy@example.com,true
+2010,101-01-0101,Radia Perlman,13000,N,UK,2024-02-05,radia@example.com,true
