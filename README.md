@@ -2,7 +2,7 @@
 
 A data quality profiler built on Spark, with FastAPI in front of it.
 
-I use Spark for every metric: fill rates, duplicates, IQR outliers, date parse failures, and so on. There is an agent layer, but it never opens the dataset. It only reads the `DatasetProfile` JSON that Spark already produced, then writes a short summary or answers a question against those numbers. Python 3.13, PySpark 4.2, FastAPI, Pydantic v2.
+I used Spark for various metric: fill rates, duplicates, IQR outliers, date parse failures, and so on. There is an agent layer, but it never opens the dataset. It only reads the `DatasetProfile` JSON that Spark already produced, then writes a short summary or answers a question against those numbers. Python 3.13, PySpark 4.2, FastAPI, Pydantic v2.
 
 ---
 
