@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: data-inspect
+Version: 0.1.0
+Summary: Add your description here
+Author-email: Vibhanshu230 <vibha23703@gmail.com>
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.141.1
+Requires-Dist: pydantic>=2.13.5
+Requires-Dist: pyspark>=4.2.0
+Requires-Dist: python-multipart>=0.0.32
+Requires-Dist: uvicorn>=0.52.4
+Provides-Extra: databricks
+Requires-Dist: databricks-sdk>=0.135.0; extra == "databricks"
+Provides-Extra: agents
+Requires-Dist: langchain-core>=1.6.2; extra == "agents"
+Requires-Dist: langchain-openai>=1.6.0; extra == "agents"
+Requires-Dist: langgraph>=1.2.11; extra == "agents"
+Provides-Extra: dev
+Requires-Dist: httpx>=0.28.1; extra == "dev"
+Requires-Dist: pytest>=9.1.1; extra == "dev"
